@@ -1,0 +1,49 @@
+import random
+from time import sleep
+
+
+class Personagem:
+    def __init__(self, nome, vida, acerto, defesa, dano):
+        self.nome = nome
+        self.vida = vida
+        self.acerto = acerto
+        self.defesa = defesa
+        self.dano = dano
+
+    def rolar_dado_acerto(self):
+        return random.randint(1, 20)
+
+    def rolar_dado_dano(self):
+        return random.randint(1, 10)
+
+    def atacar(self, alvo):
+        rolagem_acerto = self.rolar_dado_acerto()
+        if rolagem_acerto + self.acerto > alvo.defesa:
+            rolagem_dano = self.rolar_dado_dano()
+            dano_causado = rolagem_dano + self.dano
+            alvo.vida -= dano_causado
+            print(f'{self.nome} atacou {alvo.nome} causando {dano_causado} de dano.')
+        else:
+            print(f'{self.nome} errou o ataque em {alvo.nome}.')
+
+
+personagem1 = Personagem('Lewin', 50, 5, 15, 5)
+personagem2 = Personagem('Monstro', 80, 6, 8, 10)
+
+while True:
+
+    if personagem1.vida > 0 and personagem2.vida > 0:
+        sleep(2)
+        personagem1.atacar(personagem2)
+        sleep(2)
+        personagem2.atacar(personagem1)
+        sleep(2)
+        print(' ')
+        print(f'{personagem1.nome}: Vida = {personagem1.vida}')
+        print(f'{personagem2.nome}: Vida = {personagem2.vida}')
+        print(' ')
+
+    elif personagem1.vida <= 0 or personagem2.vida <= 0:
+        print('Combate Encerrado...')
+        break
+
