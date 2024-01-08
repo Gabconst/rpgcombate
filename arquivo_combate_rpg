@@ -27,7 +27,7 @@ class Personagem:
             print(f'{self.nome} errou o ataque em {alvo.nome}.')
 
 
-personagem1 = Personagem('Lewin', 50, 5, 15, 5)
+personagem1 = Personagem('Guerreiro', 50, 5, 15, 5)
 personagem2 = Personagem('Monstro', 80, 6, 8, 10)
 
 while True:
